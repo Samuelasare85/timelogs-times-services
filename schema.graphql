@@ -1,0 +1,35 @@
+scalar DateTime
+scalar EmailAddress
+scalar _FieldSet
+
+
+
+type schema {
+    query: Query
+    mutation: Mutation
+}
+
+type User @key (fields: "id") @extends {
+    id : ID! @external
+    log : [Log]
+}   
+
+type Log {
+    id : ID!
+    time_in : String
+    time_out : String 
+    indicator : String
+    absent : Boolean!
+    user: User @provides (fields:"id")
+    user_id: ID
+}
+
+
+type Query {
+    userTimeLogs(user_id : Int!) : [Log]
+}
+
+type Mutation {
+    addTimeInLogs(user_id:Int!) : [Log]
+    addTimeOutLogs(user_id:Int!) : [Log]
+}

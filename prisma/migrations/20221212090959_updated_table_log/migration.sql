@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Log" ALTER COLUMN "time_in" DROP DEFAULT,
+ALTER COLUMN "time_out" DROP DEFAULT;
